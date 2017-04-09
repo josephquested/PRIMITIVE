@@ -25,7 +25,7 @@ public class StateMachine : MonoBehaviour {
 		movement = GetComponent<Movement>();
 	}
 
-	void Update ()
+	void FixedUpdate ()
 	{
 		UpdateMovementState();
 	}

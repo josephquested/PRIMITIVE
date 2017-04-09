@@ -19,11 +19,11 @@ public class PlayerInput : MonoBehaviour {
 
 	void HorizontalAxis ()
 	{
-		sm.ReceiveHorizontalAxis(Input.GetAxis("Horizontal"));
+		sm.ReceiveHorizontalAxis(Input.GetAxisRaw("Horizontal"));
 	}
 
 	void VerticalAxis ()
 	{
-		sm.ReceiveVerticalAxis(Input.GetAxis("Vertical"));
+		sm.ReceiveVerticalAxis(Input.GetAxisRaw("Vertical"));
 	}
 }
