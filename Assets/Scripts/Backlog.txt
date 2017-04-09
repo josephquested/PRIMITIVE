@@ -1,7 +1,7 @@
 10-04-17
 mouse cursor is a little black and white circle []
-player looks towards mouse cursor []
-player has eyes to indicate their facing direction []
+player looks towards mouse cursor [X]
+player has eyes to indicate their facing direction [X]
 player input moves the players rigidbody [X]
 state machine sends input to player movement if it is in a movable state [X]
 state machine can transition from idle to moving [X]
