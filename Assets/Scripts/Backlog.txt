@@ -1,0 +1,11 @@
+10-04-17
+player input moves the players rigidbody []
+state machine sends input to player movement if it is in a movable state [X]
+state machine can transition from idle to moving [X]
+state machine has idle and moving states [X]
+player input sends input messages to state machine [X]
+basic scene and player character objects [X]
+player input script [X]
+state machine script [X]
+movement script [X]
+set camera position and angle [X]
