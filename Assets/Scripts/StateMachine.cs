@@ -5,25 +5,7 @@ using UnityEngine;
 
 public enum States { Break, Idle, Warm, Fire };
 
-// 0: Break
-// 1: Idle
-// 2: Warm
-// 3: Fire
-
 public class StateMachine : MonoBehaviour {
-
-	Movement movement;
-
-	public States state = States.Idle;
-
-	public bool moving;
-
-	public float horizontal;
-	public float vertical;
-
-	public bool fire;
-	public bool fireDown;
-	public bool fireUp;
 
 	// SYSTEM //
 
@@ -41,6 +23,12 @@ public class StateMachine : MonoBehaviour {
 
 	// INPUTS //
 
+	float horizontal;
+	float vertical;
+	bool fire;
+	bool fireDown;
+	bool fireUp;
+
 	public void ReceiveHVAxis (float _horizontal, float _vertical)
 	{
 		horizontal = _horizontal;
@@ -55,6 +43,8 @@ public class StateMachine : MonoBehaviour {
 	}
 
 	// STATE CONTROL //
+
+	public States state = States.Idle;
 
 	void Transition (States newState)
 	{
@@ -84,6 +74,9 @@ public class StateMachine : MonoBehaviour {
 
 	// MOVEMENT //
 
+	Movement movement;
+	public bool moving;
+
 	void UpdateMovement ()
 	{
 		if (horizontal != 0 || vertical != 0)
@@ -106,13 +99,16 @@ public class StateMachine : MonoBehaviour {
 		return moveableStates.Contains((int)state);
 	}
 
-	// WARM AND FIRE //
+	// OFFENCE //
+
+	public Weapon weapon;
 
 	void UpdateWarm ()
 	{
 		if (fire && CanTransition(States.Warm))
 		{
 			Transition(States.Warm);
+			weapon.Warm();
 		}
 	}
 
@@ -121,11 +117,7 @@ public class StateMachine : MonoBehaviour {
 		if (fireUp && CanTransition(States.Fire))
 		{
 			Transition(States.Fire);
+			weapon.Fire();
 		}
 	}
-
-	// if fire is down, and can transition to warming, do so.
-	// if warm, and button is up, transition to FIRING
-	// if firing, and break, transition to idle
-
 }

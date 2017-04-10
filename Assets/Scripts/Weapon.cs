@@ -5,7 +5,6 @@ using UnityEngine;
 public class Weapon : MonoBehaviour {
 
 	Animator anim;
-
 	Rigidbody rb;
 
 	public float thrust;
@@ -16,14 +15,16 @@ public class Weapon : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 	}
 
-	void Update ()
+	public void Warm ()
 	{
-		anim.SetBool("Warm", Input.GetButton("Fire"));
-		if (Input.GetButtonUp("Fire"))
-		{
-			anim.SetTrigger("Fire");
-			Thrust();
-		}
+		anim.SetBool("Warm", true);
+	}
+
+	public void Fire ()
+	{
+		anim.SetBool("Warm", false);
+		anim.SetTrigger("Fire");
+		Thrust();
 	}
 
 	void Thrust ()
