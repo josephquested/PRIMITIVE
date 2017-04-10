@@ -19,4 +19,14 @@ public class Unarmed : Weapon {
     Thrust();
     firing = false;
   }
+
+  public override void BlockStart ()
+  {
+    anim.SetBool("Block", true);
+  }
+
+  public override void BlockStop ()
+  {
+    anim.SetBool("Block", false);
+  }
 }

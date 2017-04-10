@@ -64,7 +64,7 @@ public class StateMachine : MonoBehaviour {
 				return new int[] { 0, 1 }.Contains((int)newState);
 
 			case States.Idle:
-				return new int[] { 0, 1, 2 }.Contains((int)newState);
+				return new int[] { 0, 1, 2, 4 }.Contains((int)newState);
 
 			case States.Warm:
 				return new int[] { 0, 3 }.Contains((int)newState);

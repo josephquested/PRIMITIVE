@@ -33,15 +33,13 @@ public class Weapon : MonoBehaviour {
 
 	public virtual void BlockStart ()
 	{
-
+		// override
 	}
 
 	public virtual void BlockStop ()
 	{
-
+		// override
 	}
-
-
 
 	public virtual void Thrust ()
 	{
