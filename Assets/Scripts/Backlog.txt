@@ -1,5 +1,7 @@
 10-04-17
-mouse cursor is a little black and white circle []
+player can hold down and release a power attack []
+player can do a quick melee atack []
+mouse cursor is a little black and white circle [X]
 player looks towards mouse cursor [X]
 player has eyes to indicate their facing direction [X]
 player input moves the players rigidbody [X]
