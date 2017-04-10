@@ -120,8 +120,20 @@ public class StateMachine : MonoBehaviour {
 	{
 		if (fireUp && CanTransition(States.Fire) && weapon.canFire)
 		{
-			Transition(States.Idle);
-			weapon.Fire();
+			StartCoroutine(FireRoutine());
 		}
+	}
+
+	IEnumerator FireRoutine ()
+	{
+		Transition(States.Fire);
+		weapon.Fire();
+
+		while (weapon.firing)
+		{
+			yield return null;
+		}
+
+		Transition(States.Idle);
 	}
 }

@@ -5,11 +5,12 @@ using UnityEngine;
 public class Weapon : MonoBehaviour {
 
 	Rigidbody rb;
-	
+
 	public Animator anim;
 
 	public bool canWarm;
 	public bool canFire;
+	public bool firing;
 
 	public float thrust;
 	public float recoil;

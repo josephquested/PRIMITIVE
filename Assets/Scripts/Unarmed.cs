@@ -12,9 +12,11 @@ public class Unarmed : Weapon {
 
   public override void Fire ()
   {
+    firing = true;
+    canFire = false;
     anim.SetBool("Warm", false);
     anim.SetTrigger("Fire");
-    canFire = false;
     Thrust();
+    firing = false;
   }
 }
