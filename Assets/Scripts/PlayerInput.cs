@@ -13,17 +13,17 @@ public class PlayerInput : MonoBehaviour {
 
 	void Update ()
 	{
-		HorizontalAxis();
-		VerticalAxis();
+		HVAxis();
+		Fire();
 	}
 
-	void HorizontalAxis ()
+	void HVAxis ()
 	{
-		sm.ReceiveHorizontalAxis(Input.GetAxisRaw("Horizontal"));
+		sm.ReceiveHVAxis(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 	}
 
-	void VerticalAxis ()
+	void Fire ()
 	{
-		sm.ReceiveVerticalAxis(Input.GetAxisRaw("Vertical"));
+		sm.ReceiveFire(Input.GetButton("Fire"), Input.GetButtonDown("Fire"), Input.GetButtonUp("Fire"));
 	}
 }

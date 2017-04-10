@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum States { Break, Idle, Moving };
+public enum States { Break, Idle, Warm, Fire };
 
 // 0: Break
 // 1: Idle
-// 2: Moving
+// 2: Warm
+// 3: Fire
 
 public class StateMachine : MonoBehaviour {
 
@@ -15,8 +16,14 @@ public class StateMachine : MonoBehaviour {
 
 	public States state = States.Idle;
 
+	public bool moving;
+
 	public float horizontal;
 	public float vertical;
+
+	public bool fire;
+	public bool fireDown;
+	public bool fireUp;
 
 	// SYSTEM //
 
@@ -27,19 +34,22 @@ public class StateMachine : MonoBehaviour {
 
 	void FixedUpdate ()
 	{
-		UpdateMovementState();
+		UpdateMovement();
 	}
 
 	// INPUTS //
 
-	public void ReceiveHorizontalAxis (float _horizontal)
+	public void ReceiveHVAxis (float _horizontal, float _vertical)
 	{
 		horizontal = _horizontal;
+		vertical = _vertical;
 	}
 
-	public void ReceiveVerticalAxis (float _vertical)
+	public void ReceiveFire (bool _fire, bool _fireDown, bool _fireUp)
 	{
-		vertical = _vertical;
+		fire = _fire;
+		fireDown = _fireDown;
+		fireUp = _fireUp;
 	}
 
 	// STATE CONTROL //
@@ -54,13 +64,16 @@ public class StateMachine : MonoBehaviour {
 		switch (state)
 		{
 			case States.Break:
-				return new int[] { 0, 1, 2 }.Contains((int)newState);
+				return new int[] { 0, 1 }.Contains((int)newState);
 
 			case States.Idle:
 				return new int[] { 0, 1, 2 }.Contains((int)newState);
 
-			case States.Moving:
-				return new int[] { 0, 1, 2 }.Contains((int)newState);
+			case States.Warm:
+				return new int[] { 0, 2, 3 }.Contains((int)newState);
+
+			case States.Fire:
+				return new int[] { 0, 1 }.Contains((int)newState);
 
 			default:
 				return false;
@@ -69,22 +82,19 @@ public class StateMachine : MonoBehaviour {
 
 	// MOVEMENT //
 
-	void UpdateMovementState ()
+	void UpdateMovement ()
 	{
 		if (horizontal != 0 || vertical != 0)
 		{
-			if (CanTransition(States.Moving) || state == States.Moving)
+			if (CanMove())
 			{
-				Transition(States.Moving);
+				moving = true;
 				movement.ReceiveInput(horizontal, vertical);
 			}
 		}
 		else
 		{
-			if (CanTransition(States.Idle) || state == States.Idle)
-			{
-				Transition(States.Idle);
-			}
+			moving = false;
 		}
 	}
 
@@ -93,4 +103,22 @@ public class StateMachine : MonoBehaviour {
 		int[] moveableStates = new int[] { 1, 2 };
 		return moveableStates.Contains((int)state);
 	}
+
+	// WARMING AND FIRING //
+
+	void UpdateWarmState ()
+	{
+		if (fire)
+		{
+			if (CanTransition(States.Warm))
+			{
+
+			}
+		}
+	}
+
+	// if fire is down, and can transition to warming, do so.
+	// if warm, and button is up, transition to FIRING
+	// if firing, and break, transition to idle
+
 }

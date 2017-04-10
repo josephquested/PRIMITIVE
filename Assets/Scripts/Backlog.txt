@@ -1,5 +1,7 @@
 10-04-17
 player can hold down and release a power attack []
+unarmed is a separate script that extends weapon []
+warm and attack states working with state machine []
 player can do a quick melee atack []
 mouse cursor is a little black and white circle [X]
 player looks towards mouse cursor [X]

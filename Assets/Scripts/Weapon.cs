@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour {
+public class Weapon : MonoBehaviour {
 
 	Animator anim;
 
@@ -18,10 +18,10 @@ public class Attack : MonoBehaviour {
 
 	void Update ()
 	{
-		anim.SetBool("Warm", Input.GetButton("Fire1"));
-		if (Input.GetButtonUp("Fire1"))
+		anim.SetBool("Warm", Input.GetButton("Fire"));
+		if (Input.GetButtonUp("Fire"))
 		{
-			anim.SetTrigger("Attack");
+			anim.SetTrigger("Fire");
 			Thrust();
 		}
 	}
