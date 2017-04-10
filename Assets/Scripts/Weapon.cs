@@ -7,27 +7,32 @@ public class Weapon : MonoBehaviour {
 	Animator anim;
 	Rigidbody rb;
 
+	public bool canWarm;
+	public bool canFire;
+
 	public float thrust;
 
 	void Start ()
 	{
 		anim = GetComponent<Animator>();
-		rb = GetComponent<Rigidbody>();
+		rb = transform.parent.GetComponent<Rigidbody>();
 	}
 
-	public void Warm ()
+	public virtual void Warm ()
 	{
 		anim.SetBool("Warm", true);
+		canFire = true;
 	}
 
-	public void Fire ()
+	public virtual void Fire ()
 	{
 		anim.SetBool("Warm", false);
 		anim.SetTrigger("Fire");
+		canFire = false;
 		Thrust();
 	}
 
-	void Thrust ()
+	public virtual void Thrust ()
 	{
 		rb.AddForce(transform.forward * thrust, ForceMode.Impulse);
 	}
