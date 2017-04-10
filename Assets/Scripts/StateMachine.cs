@@ -17,6 +17,10 @@ public class StateMachine : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		UpdateMovement();
+	}
+
+	void Update ()
+	{
 		UpdateWarm();
 		UpdateFire();
 	}

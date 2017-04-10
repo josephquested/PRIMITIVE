@@ -15,5 +15,6 @@ public class Unarmed : Weapon {
     anim.SetBool("Warm", false);
     anim.SetTrigger("Fire");
     canFire = false;
+    Thrust();
   }
 }
