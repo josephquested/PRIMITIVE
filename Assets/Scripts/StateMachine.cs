@@ -35,6 +35,8 @@ public class StateMachine : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		UpdateMovement();
+		UpdateWarm();
+		UpdateFire();
 	}
 
 	// INPUTS //
@@ -70,7 +72,7 @@ public class StateMachine : MonoBehaviour {
 				return new int[] { 0, 1, 2 }.Contains((int)newState);
 
 			case States.Warm:
-				return new int[] { 0, 2, 3 }.Contains((int)newState);
+				return new int[] { 0, 3 }.Contains((int)newState);
 
 			case States.Fire:
 				return new int[] { 0, 1 }.Contains((int)newState);
@@ -104,16 +106,21 @@ public class StateMachine : MonoBehaviour {
 		return moveableStates.Contains((int)state);
 	}
 
-	// WARMING AND FIRING //
+	// WARM AND FIRE //
 
-	void UpdateWarmState ()
+	void UpdateWarm ()
 	{
-		if (fire)
+		if (fire && CanTransition(States.Warm))
 		{
-			if (CanTransition(States.Warm))
-			{
+			Transition(States.Warm);
+		}
+	}
 
-			}
+	void UpdateFire ()
+	{
+		if (fireUp && CanTransition(States.Fire))
+		{
+			Transition(States.Fire);
 		}
 	}
 
