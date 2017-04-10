@@ -136,4 +136,23 @@ public class StateMachine : MonoBehaviour {
 
 		Transition(States.Idle);
 	}
+
+	// DEFENCE //
+
+	// all the variables
+
+	void UpdateBlock ()
+	{
+		if (blockDown && CanTransition(States.Block))
+		{
+			weapon.StartBlock();
+		}
+
+		if (blockUp && CanTransition(States.Idle))
+		{
+			weapon.StopBlock();
+		}
+	}
+
+	// void ReceiveBlock ()
 }
