@@ -31,6 +31,18 @@ public class Weapon : MonoBehaviour {
 		// override
 	}
 
+	public virtual void BlockStart ()
+	{
+
+	}
+
+	public virtual void BlockStop ()
+	{
+
+	}
+
+
+
 	public virtual void Thrust ()
 	{
 		rb.AddForce(transform.parent.transform.forward * thrust, ForceMode.Impulse);

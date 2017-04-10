@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum States { Break, Idle, Warm, Fire };
+public enum States { Break, Idle, Warm, Fire, Block };
 
 public class StateMachine : MonoBehaviour {
 
@@ -23,6 +23,7 @@ public class StateMachine : MonoBehaviour {
 	{
 		UpdateWarm();
 		UpdateFire();
+		UpdateBlock();
 	}
 
 	// INPUTS //
@@ -69,6 +70,9 @@ public class StateMachine : MonoBehaviour {
 				return new int[] { 0, 3 }.Contains((int)newState);
 
 			case States.Fire:
+				return new int[] { 0, 1 }.Contains((int)newState);
+
+			case States.Block:
 				return new int[] { 0, 1 }.Contains((int)newState);
 
 			default:
@@ -139,20 +143,27 @@ public class StateMachine : MonoBehaviour {
 
 	// DEFENCE //
 
-	// all the variables
+	bool block;
+	bool blockDown;
+	bool blockUp;
 
 	void UpdateBlock ()
 	{
 		if (blockDown && CanTransition(States.Block))
 		{
-			weapon.StartBlock();
+			weapon.BlockStart();
 		}
 
 		if (blockUp && CanTransition(States.Idle))
 		{
-			weapon.StopBlock();
+			weapon.BlockStop();
 		}
 	}
 
-	// void ReceiveBlock ()
+	public void ReceiveBlock (bool _block, bool _blockDown, bool _blockUp)
+	{
+		block = _block;
+		blockDown = _blockDown;
+		blockUp = _blockUp;
+	}
 }

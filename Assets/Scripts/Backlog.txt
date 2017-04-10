@@ -1,8 +1,8 @@
 10-04-17
-player can hold down and release a power attack []
+player can block by holding the right mouse button []
 unarmed animations should belong to their weapon object, not the player [X]
 unarmed is a separate script that extends weapon [X]
-warm and attack states working with state machine []
+warm and attack states working with state machine [X]
 player can do a quick melee atack []
 mouse cursor is a little black and white circle [X]
 player looks towards mouse cursor [X]
