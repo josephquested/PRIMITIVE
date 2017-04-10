@@ -105,26 +105,18 @@ public class StateMachine : MonoBehaviour {
 
 	void UpdateWarm ()
 	{
-		// if (fire && CanTransition(States.Warm) && weapon.canWarm)
-		// {
-		// 	Transition(States.Warm);
-		// 	weapon.Warm();
-		// }
-		if (fire)
+		if (fire && CanTransition(States.Warm) && weapon.canWarm)
 		{
+			Transition(States.Warm);
 			weapon.Warm();
 		}
 	}
 
 	void UpdateFire ()
 	{
-		// if (fireUp && CanTransition(States.Fire) && weapon.canFire)
-		// {
-		// 	Transition(States.Idle);
-		// 	weapon.Fire();
-		// }
-		if (fireUp)
+		if (fireUp && CanTransition(States.Fire) && weapon.canFire)
 		{
+			Transition(States.Idle);
 			weapon.Fire();
 		}
 	}

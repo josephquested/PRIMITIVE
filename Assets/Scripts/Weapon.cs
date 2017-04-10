@@ -4,36 +4,39 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour {
 
-	Animator anim;
 	Rigidbody rb;
+	
+	public Animator anim;
 
 	public bool canWarm;
 	public bool canFire;
 
 	public float thrust;
+	public float recoil;
 
-	void Start ()
+	void Awake ()
 	{
-		anim = GetComponent<Animator>();
 		rb = transform.parent.GetComponent<Rigidbody>();
+		anim = GetComponent<Animator>();
 	}
 
 	public virtual void Warm ()
 	{
-		anim.SetBool("Warm", true);
-		canFire = true;
+		// override
 	}
 
 	public virtual void Fire ()
 	{
-		anim.SetBool("Warm", false);
-		anim.SetTrigger("Fire");
-		canFire = false;
-		Thrust();
+		// override
 	}
 
 	public virtual void Thrust ()
 	{
-		rb.AddForce(transform.forward * thrust, ForceMode.Impulse);
+		rb.AddForce(transform.parent.transform.forward * thrust, ForceMode.Impulse);
+	}
+
+	public virtual void Recoil ()
+	{
+		rb.AddForce(-transform.parent.transform.forward * recoil, ForceMode.Impulse);
 	}
 }
