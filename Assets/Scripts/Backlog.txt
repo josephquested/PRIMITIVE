@@ -1,9 +1,14 @@
+11-04-17
+drone dies when hitpoints reach 0 []
+drone can be punched, and receives damage []
+basic drone character created [X]
+
 10-04-17
-player can block by holding the right mouse button []
+player can block by holding the right mouse button [X]
 unarmed animations should belong to their weapon object, not the player [X]
 unarmed is a separate script that extends weapon [X]
 warm and attack states working with state machine [X]
-player can do a quick melee atack []
+player can do a quick melee atack [X]
 mouse cursor is a little black and white circle [X]
 player looks towards mouse cursor [X]
 player has eyes to indicate their facing direction [X]
