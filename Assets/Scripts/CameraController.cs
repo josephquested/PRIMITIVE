@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	public Transform player;
+
+	public bool trackPlayer;
+
+	void Update ()
+	{
+		if (trackPlayer)
+		{
+			TrackPlayer();
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	void TrackPlayer ()
+	{
+		Vector3 position = new Vector3(player.position.x, 11, player.position.z - 10);
+		transform.position = position;
 	}
 }

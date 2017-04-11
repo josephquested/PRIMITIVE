@@ -92,7 +92,7 @@ public class StateMachine : MonoBehaviour {
 		anim.SetBool("Moving", moving);
 		if (Input.GetButtonDown("Fire"))
 		{
-			anim.SetTrigger("Walk-360");
+			anim.SetTrigger("360");
 		}
 	}
 }
