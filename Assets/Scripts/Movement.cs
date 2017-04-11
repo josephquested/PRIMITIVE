@@ -4,35 +4,25 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour {
 
- 	// SYSTEM //
+	public float speed;
 
-	void Start ()
-	{
-		rb = GetComponent<Rigidbody>();
-	}
+ 	// SYSTEM //
 
 	public void ReceiveInput (float horizontal, float vertical)
 	{
-		Move(GetMovement(horizontal, vertical));
+		// Move(GetMovement(horizontal, vertical));
 	}
 
 	// MOVEMENT //
 
-	Rigidbody rb;
-
-	public float speed;
-	public float baseSpeed;
-	public float blockSpeed;
-
-	Vector3 GetMovement (float horizontal, float vertical)
-	{
-		Vector3 movement = new Vector3(horizontal, 0, vertical);
-		if (horizontal != 0 && vertical != 0) { movement *= 0.75f; }
-		return movement * speed;
-	}
-
-	void Move (Vector3 movement)
-	{
-		rb.AddForce(movement, ForceMode.Impulse);
-	}
+	// Vector3 GetMovement (float horizontal, float vertical)
+	// {
+	// 	Vector3 movement = new Vector3(horizontal, 0, vertical);
+	// 	return movement * speed;
+	// }
+	//
+	// void Move (Vector3 movement)
+	// {
+	// 	transform.Translate(movement, ForceMode.Impulse);
+	// }
 }

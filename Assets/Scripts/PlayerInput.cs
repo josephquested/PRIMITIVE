@@ -16,8 +16,6 @@ public class PlayerInput : MonoBehaviour {
 	void Update ()
 	{
 		HVAxis();
-		Fire();
-		Block();
 	}
 
 	// INPUTS //
@@ -25,15 +23,5 @@ public class PlayerInput : MonoBehaviour {
 	void HVAxis ()
 	{
 		sm.ReceiveHVAxis(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-	}
-
-	void Fire ()
-	{
-		sm.ReceiveFire(Input.GetButton("Fire"), Input.GetButtonDown("Fire"), Input.GetButtonUp("Fire"));
-	}
-
-	void Block ()
-	{
-		sm.ReceiveBlock(Input.GetButton("Block"), Input.GetButtonDown("Block"), Input.GetButtonUp("Block"));
 	}
 }

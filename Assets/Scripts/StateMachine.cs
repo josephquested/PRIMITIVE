@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum States { Break, Idle, Warm, Fire, Block };
+public enum States { Break, Idle };
 
 public class StateMachine : MonoBehaviour {
 
@@ -12,43 +12,24 @@ public class StateMachine : MonoBehaviour {
 	void Start ()
 	{
 		movement = GetComponent<Movement>();
-		hitpoints = GetComponent<Hitpoints>();
+		anim = GetComponent<Animator>();
 	}
 
 	void FixedUpdate ()
 	{
 		UpdateMovement();
-	}
-
-	void Update ()
-	{
-		UpdateWarm();
-		UpdateFire();
-		UpdateBlock();
-		UpdateSpeed();
-		UpdateDamageable();
-		UpdateAlive();
+		UpdateAnimator();
 	}
 
 	// INPUTS //
 
 	float horizontal;
 	float vertical;
-	bool fire;
-	bool fireDown;
-	bool fireUp;
 
 	public void ReceiveHVAxis (float _horizontal, float _vertical)
 	{
 		horizontal = _horizontal;
 		vertical = _vertical;
-	}
-
-	public void ReceiveFire (bool _fire, bool _fireDown, bool _fireUp)
-	{
-		fire = _fire;
-		fireDown = _fireDown;
-		fireUp = _fireUp;
 	}
 
 	// STATE CONTROL //
@@ -68,15 +49,6 @@ public class StateMachine : MonoBehaviour {
 				return new int[] { 0, 1 }.Contains((int)newState);
 
 			case States.Idle:
-				return new int[] { 0, 1, 2, 4 }.Contains((int)newState);
-
-			case States.Warm:
-				return new int[] { 0, 3 }.Contains((int)newState);
-
-			case States.Fire:
-				return new int[] { 0, 1 }.Contains((int)newState);
-
-			case States.Block:
 				return new int[] { 0, 1 }.Contains((int)newState);
 
 			default:
@@ -105,113 +77,22 @@ public class StateMachine : MonoBehaviour {
 		}
 	}
 
-	void UpdateSpeed ()
-	{
-		switch (state)
-		{
-			case States.Idle:
-				movement.speed = movement.baseSpeed;
-				break;
-
-			case States.Block:
-				movement.speed = movement.blockSpeed;
-				break;
-		}
-	}
-
 	bool CanMove ()
 	{
-		int[] moveableStates = new int[] { 1, 2, 4 };
+		int[] moveableStates = new int[] { 1 };
 		return moveableStates.Contains((int)state);
 	}
 
-	// OFFENCE //
+	// ANIMATOR //
 
-	public Weapon weapon;
+	Animator anim;
 
-	void UpdateWarm ()
+	void UpdateAnimator ()
 	{
-		if (fire && CanTransition(States.Warm) && weapon.canWarm)
+		anim.SetBool("Moving", moving);
+		if (Input.GetButtonDown("Fire"))
 		{
-			Transition(States.Warm);
-			weapon.Warm();
+			anim.SetTrigger("Walk-360");
 		}
-	}
-
-	void UpdateFire ()
-	{
-		if (fireUp && CanTransition(States.Fire) && weapon.canFire)
-		{
-			StartCoroutine(FireRoutine());
-		}
-	}
-
-	IEnumerator FireRoutine ()
-	{
-		Transition(States.Fire);
-		weapon.Fire();
-
-		while (weapon.IsFiring())
-		{
-			yield return null;
-		}
-
-		Transition(States.Idle);
-	}
-
-	// DEFENCE //
-
-	bool block;
-	bool blockDown;
-	bool blockUp;
-
-	void UpdateBlock ()
-	{
-		if (blockDown && CanTransition(States.Block))
-		{
-			Transition(States.Block);
-			weapon.Block(true);
-		}
-
-		if (blockUp && CanTransition(States.Idle))
-		{
-			Transition(States.Idle);
-			weapon.Block(false);
-		}
-	}
-
-	public void ReceiveBlock (bool _block, bool _blockDown, bool _blockUp)
-	{
-		block = _block;
-		blockDown = _blockDown;
-		blockUp = _blockUp;
-	}
-
-	// STATUS //
-
-	Hitpoints hitpoints;
-
-	void UpdateDamageable ()
-	{
-		hitpoints.damageable = IsDamagable();
-	}
-
-	void UpdateAlive ()
-	{
-		if (hitpoints.hitpoints <= 0)
-		{
-			Die();
-		}
-	}
-
-	void Die ()
-	{
-		Destroy(gameObject);
-	}
-
-	bool IsDamagable ()
-	{
-		int[] unDamageableStates = new int[] { };
-		return !unDamageableStates.Contains((int)state);
 	}
 }
