@@ -24,6 +24,7 @@ public class StateMachine : MonoBehaviour {
 		UpdateWarm();
 		UpdateFire();
 		UpdateBlock();
+		UpdateSpeed();
 	}
 
 	// INPUTS //
@@ -101,9 +102,23 @@ public class StateMachine : MonoBehaviour {
 		}
 	}
 
+	void UpdateSpeed ()
+	{
+		switch (state)
+		{
+			case States.Idle:
+				movement.speed = movement.baseSpeed;
+				break;
+
+			case States.Block:
+				movement.speed = movement.blockSpeed;
+				break;
+		}
+	}
+
 	bool CanMove ()
 	{
-		int[] moveableStates = new int[] { 1, 2 };
+		int[] moveableStates = new int[] { 1, 2, 4 };
 		return moveableStates.Contains((int)state);
 	}
 
@@ -151,11 +166,13 @@ public class StateMachine : MonoBehaviour {
 	{
 		if (blockDown && CanTransition(States.Block))
 		{
+			Transition(States.Block);
 			weapon.Block(true);
 		}
 
 		if (blockUp && CanTransition(States.Idle))
 		{
+			Transition(States.Idle);
 			weapon.Block(false);
 		}
 	}

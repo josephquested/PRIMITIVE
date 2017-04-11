@@ -19,8 +19,10 @@ public class Movement : MonoBehaviour {
 	// MOVEMENT //
 
 	Rigidbody rb;
-	
+
 	public float speed;
+	public float baseSpeed;
+	public float blockSpeed;
 
 	Vector3 GetMovement (float horizontal, float vertical)
 	{
