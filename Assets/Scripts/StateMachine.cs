@@ -151,7 +151,7 @@ public class StateMachine : MonoBehaviour {
 		Transition(States.Fire);
 		weapon.Fire();
 
-		while (weapon.firing)
+		while (weapon.IsFiring())
 		{
 			yield return null;
 		}

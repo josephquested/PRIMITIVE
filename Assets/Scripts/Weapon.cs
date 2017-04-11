@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour {
 	// OFFENCE //
 
 	public int damage;
-	public bool firing;
+	public float knockback;
 	public bool canWarm;
 	public bool canFire;
 
@@ -29,6 +29,12 @@ public class Weapon : MonoBehaviour {
 	public virtual void Fire ()
 	{
 		// override
+	}
+
+	public bool IsFiring ()
+	{
+		string weaponName = gameObject.name.ToLower();
+		return AnimatorIsPlaying(weaponName + "-fire");
 	}
 
 	// DEFENCE //
@@ -50,6 +56,12 @@ public class Weapon : MonoBehaviour {
 		// override
 	}
 
+	public virtual void Knockback (GameObject hitObj, Vector3 direction)
+	{
+		Rigidbody targetRb = hitObj.GetComponent<Rigidbody>();
+		targetRb.AddForce(direction * knockback, ForceMode.Impulse);
+	}
+
 	public virtual void Thrust ()
 	{
 		rb.AddForce(transform.parent.transform.forward * thrust, ForceMode.Impulse);
@@ -59,4 +71,11 @@ public class Weapon : MonoBehaviour {
 	{
 		rb.AddForce(-transform.parent.transform.forward * recoil, ForceMode.Impulse);
 	}
+
+	// ANIMATOR //
+
+  bool AnimatorIsPlaying (string stateName)
+  {
+    return anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+  }
 }

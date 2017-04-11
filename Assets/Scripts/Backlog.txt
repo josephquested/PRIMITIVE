@@ -1,5 +1,12 @@
 11-04-17
-drone dies when hitpoints reach 0 []
+rock item block animation []
+rock item attack animation []
+player can pick up rock item []
+rock displays pickup with space bar text []
+rock item game object created []
+fist only hits if it’s attacking, not blocking [X]
+getting hit delivers knock back [X]
+drone dies when hitpoints reach 0 [X]
 refactor [X]
 drone can be punched, and receives damage [X]
 weapons have a receivecollider function that gets called by their children colliders [X]

@@ -14,17 +14,18 @@ public class Unarmed : Weapon {
 
   public override void Fire ()
   {
-    firing = true;
     canFire = false;
     anim.SetBool("Warm", false);
     anim.SetTrigger("Fire");
     Thrust();
-    firing = false;
   }
 
   public virtual void DamageObject (GameObject hitObj)
   {
-    hitObj.GetComponent<Hitpoints>().ReceiveDamage(damage);
+    if (IsFiring())
+    {
+      hitObj.GetComponent<Hitpoints>().ReceiveDamage(damage);
+    }
   }
 
   // DEFENCE //
@@ -39,5 +40,6 @@ public class Unarmed : Weapon {
   public override void ReceiveHitObject (GameObject hitObj)
   {
     DamageObject(hitObj);
+    Knockback(hitObj, transform.forward);
   }
 }
