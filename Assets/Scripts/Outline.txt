@@ -3,3 +3,6 @@ Pillars:
 - Minimal but highly polished and tactile aesthetic.
 - Everything that exists serves at least two purposes.
 - Less content, more depth.
+
+Plot:
+Only four shapes exist in the world. You appear from the future, warning that a fifth shape, the mysterious pyramid, has enslaved the world. You must collect all the sacred shapes to stop them for some reason.

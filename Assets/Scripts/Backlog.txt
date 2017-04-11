@@ -1,6 +1,8 @@
 11-04-17
 drone dies when hitpoints reach 0 []
-drone can be punched, and receives damage []
+refactor []
+drone can be punched, and receives damage [X]
+weapons have a receivecollider function that gets called by their children colliders [X]
 basic drone character created [X]
 
 10-04-17

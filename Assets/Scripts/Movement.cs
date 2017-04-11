@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour {
 
-	Rigidbody rb;
-
-	public float speed;
+ 	// SYSTEM //
 
 	void Start ()
 	{
@@ -17,6 +15,12 @@ public class Movement : MonoBehaviour {
 	{
 		Move(GetMovement(horizontal, vertical));
 	}
+
+	// MOVEMENT //
+
+	Rigidbody rb;
+	
+	public float speed;
 
 	Vector3 GetMovement (float horizontal, float vertical)
 	{

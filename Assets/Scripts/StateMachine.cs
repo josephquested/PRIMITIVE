@@ -151,12 +151,12 @@ public class StateMachine : MonoBehaviour {
 	{
 		if (blockDown && CanTransition(States.Block))
 		{
-			weapon.BlockStart();
+			weapon.Block(true);
 		}
 
 		if (blockUp && CanTransition(States.Idle))
 		{
-			weapon.BlockStop();
+			weapon.Block(false);
 		}
 	}
 

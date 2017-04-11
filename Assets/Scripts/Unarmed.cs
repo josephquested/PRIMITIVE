@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Unarmed : Weapon {
 
+  // OFFENCE //
+
   public override void Warm ()
   {
     anim.SetBool("Warm", true);
@@ -20,13 +22,22 @@ public class Unarmed : Weapon {
     firing = false;
   }
 
-  public override void BlockStart ()
+  public virtual void DamageObject (GameObject hitObj)
   {
-    anim.SetBool("Block", true);
+    hitObj.GetComponent<Hitpoints>().ReceiveDamage(damage);
   }
 
-  public override void BlockStop ()
+  // DEFENCE //
+
+  public override void Block (bool shouldBlock)
   {
-    anim.SetBool("Block", false);
+    anim.SetBool("Block", shouldBlock);
+  }
+
+  // PHYSICS //
+
+  public override void ReceiveHitObject (GameObject hitObj)
+  {
+    DamageObject(hitObj);
   }
 }

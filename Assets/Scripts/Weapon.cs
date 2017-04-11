@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour {
 
-	Rigidbody rb;
+	// SYSTEM //
 
 	public Animator anim;
 
-	public bool canWarm;
-	public bool canFire;
-	public bool firing;
-
-	public float thrust;
-	public float recoil;
-
 	void Awake ()
 	{
-		rb = transform.parent.GetComponent<Rigidbody>();
 		anim = GetComponent<Animator>();
+		rb = transform.parent.GetComponent<Rigidbody>();
 	}
+
+	// OFFENCE //
+
+	public int damage;
+	public bool firing;
+	public bool canWarm;
+	public bool canFire;
 
 	public virtual void Warm ()
 	{
@@ -31,12 +31,21 @@ public class Weapon : MonoBehaviour {
 		// override
 	}
 
-	public virtual void BlockStart ()
+	// DEFENCE //
+
+	public virtual void Block (bool shouldBlock)
 	{
 		// override
 	}
 
-	public virtual void BlockStop ()
+	// PHYSICS //
+
+	Rigidbody rb;
+
+	public float thrust;
+	public float recoil;
+
+	public virtual void ReceiveHitObject (GameObject hitObj)
 	{
 		// override
 	}

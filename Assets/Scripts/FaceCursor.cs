@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FaceCursor : MonoBehaviour {
 
+	// SYSTEM //
+
 	void Update ()
 	{
 		Plane playerPlane = new Plane(Vector3.up, transform.position);
