@@ -12,6 +12,7 @@ public class StateMachine : MonoBehaviour {
 	void Start ()
 	{
 		movement = GetComponent<Movement>();
+		hitpoints = GetComponent<Hitpoints>();
 	}
 
 	void FixedUpdate ()
@@ -25,6 +26,8 @@ public class StateMachine : MonoBehaviour {
 		UpdateFire();
 		UpdateBlock();
 		UpdateSpeed();
+		UpdateDamageable();
+		UpdateAlive();
 	}
 
 	// INPUTS //
@@ -182,5 +185,33 @@ public class StateMachine : MonoBehaviour {
 		block = _block;
 		blockDown = _blockDown;
 		blockUp = _blockUp;
+	}
+
+	// STATUS //
+
+	Hitpoints hitpoints;
+
+	void UpdateDamageable ()
+	{
+		hitpoints.damageable = IsDamagable();
+	}
+
+	void UpdateAlive ()
+	{
+		if (hitpoints.hitpoints <= 0)
+		{
+			Die();
+		}
+	}
+
+	void Die ()
+	{
+		Destroy(gameObject);
+	}
+
+	bool IsDamagable ()
+	{
+		int[] unDamageableStates = new int[] { };
+		return !unDamageableStates.Contains((int)state);
 	}
 }

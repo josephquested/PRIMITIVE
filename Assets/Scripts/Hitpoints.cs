@@ -6,9 +6,12 @@ public class Hitpoints : MonoBehaviour {
 
 	// DAMAGE SYSTEM //
 
+	public int hitpoints;
+	public bool damageable;
+
 	public void ReceiveDamage (int damage)
 	{
-		print(gameObject.name + " took damage: " + damage);
+		hitpoints -= damage;
 	}
 
 	// PHYSICS //
