@@ -18,10 +18,30 @@ public class PlayerInput : MonoBehaviour {
 		UpdateMovement();
 	}
 
+	void Update ()
+	{
+		UpdateFire();
+		UpdateCrouch();
+	}
+
 	// MOVEMENT //
 
 	void UpdateMovement ()
 	{
 		playerController.ReceiveMovement(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+	}
+
+	// FIRE //
+
+	void UpdateFire ()
+	{
+		playerController.ReceiveFire(Input.GetButtonDown("Fire"));
+	}
+
+	// CROUCH //
+
+	void UpdateCrouch ()
+	{
+		playerController.ReceiveCrouch(Input.GetButton("Crouch"));
 	}
 }
