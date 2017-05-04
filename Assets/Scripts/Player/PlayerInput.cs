@@ -21,6 +21,7 @@ public class PlayerInput : MonoBehaviour {
 	void Update ()
 	{
 		UpdateFire();
+		UpdateBlock();
 		UpdateCrouch();
 	}
 
@@ -36,6 +37,13 @@ public class PlayerInput : MonoBehaviour {
 	void UpdateFire ()
 	{
 		playerController.ReceiveFire(Input.GetButtonDown("Fire"));
+	}
+
+	// BLOCK //
+
+	void UpdateBlock ()
+	{
+		playerController.ReceiveBlock(Input.GetButton("Block"));
 	}
 
 	// CROUCH //

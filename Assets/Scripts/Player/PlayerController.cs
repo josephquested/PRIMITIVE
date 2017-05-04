@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		playerMovement = GetComponent<PlayerMovement>();
 		playerCrouch = GetComponent<PlayerCrouch>();
+		playerBlock = GetComponent<PlayerBlock>();
 		weapon = GetComponentInChildren<Weapon>();
 	}
 
@@ -35,6 +36,15 @@ public class PlayerController : MonoBehaviour {
 		{
 			weapon.FireDown();
 		}
+	}
+	
+	// BLOCK //
+
+	PlayerBlock playerBlock;
+
+	public void ReceiveBlock (bool blockButton)
+	{
+		playerBlock.ReceiveBlock(blockButton);
 	}
 
 	// CROUCH //
