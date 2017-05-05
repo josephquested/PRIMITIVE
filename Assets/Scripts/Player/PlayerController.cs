@@ -32,18 +32,21 @@ public class PlayerController : MonoBehaviour {
 
 	public void ReceiveFire (bool fireDown)
 	{
-		if (fireDown)
+		if (fireDown && !blocking)
 		{
 			weapon.FireDown();
 		}
 	}
-	
+
 	// BLOCK //
 
 	PlayerBlock playerBlock;
 
+	bool blocking;
+
 	public void ReceiveBlock (bool blockButton)
 	{
+		blocking = blockButton;
 		playerBlock.ReceiveBlock(blockButton);
 	}
 
