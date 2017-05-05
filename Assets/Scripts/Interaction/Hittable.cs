@@ -2,17 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Damageable : MonoBehaviour {
+public class Hittable : MonoBehaviour {
 
-	// SYSTEM //
+	// HIT //
 
-	void Start ()
+	public int hitpoints;
+
+	public void ReceiveHit (Hit hit)
 	{
-		
+		hitpoints -= hit.damage;
+		CheckIfDead();
 	}
 
-	void Update ()
+	// DEATH //
+
+	public GameObject deathEventPrefab;
+
+	void CheckIfDead ()
 	{
-		
+		if (hitpoints <= 0)
+		{
+			Die();
+		}
+	}
+
+	void Die ()
+	{
+		if (deathEventPrefab != null) { Instantiate(deathEventPrefab, transform.position, transform.rotation); }
+		Destroy(gameObject);
 	}
 }
