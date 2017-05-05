@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCrouch : MonoBehaviour {
+public class ActorCrouch : MonoBehaviour {
 
 	// Crouch //
 

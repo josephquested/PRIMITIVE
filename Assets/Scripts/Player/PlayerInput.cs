@@ -6,11 +6,11 @@ public class PlayerInput : MonoBehaviour {
 
 	// SYSTEM //
 
-	PlayerController playerController;
+	ActorController actorController;
 
 	void Start ()
 	{
-		playerController = GetComponent<PlayerController>();
+		actorController = GetComponent<ActorController>();
 	}
 
 	void FixedUpdate ()
@@ -29,27 +29,27 @@ public class PlayerInput : MonoBehaviour {
 
 	void UpdateMovement ()
 	{
-		playerController.ReceiveMovement(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+		actorController.ReceiveMovement(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 	}
 
 	// FIRE //
 
 	void UpdateFire ()
 	{
-		playerController.ReceiveFire(Input.GetButtonDown("Fire"));
+		actorController.ReceiveFire(Input.GetButtonDown("Fire"));
 	}
 
 	// BLOCK //
 
 	void UpdateBlock ()
 	{
-		playerController.ReceiveBlock(Input.GetButton("Block"));
+		actorController.ReceiveBlock(Input.GetButton("Block"));
 	}
 
 	// CROUCH //
 
 	void UpdateCrouch ()
 	{
-		playerController.ReceiveCrouch(Input.GetButton("Crouch"));
+		actorController.ReceiveCrouch(Input.GetButton("Crouch"));
 	}
 }

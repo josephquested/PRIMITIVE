@@ -2,27 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class ActorController : MonoBehaviour {
 
 	// SYSTEM //
 
 	void Start ()
 	{
-		playerMovement = GetComponent<PlayerMovement>();
-		playerCrouch = GetComponent<PlayerCrouch>();
-		playerBlock = GetComponent<PlayerBlock>();
+		actorMovement = GetComponent<ActorMovement>();
+		actorCrouch = GetComponent<ActorCrouch>();
+		actorBlock = GetComponent<ActorBlock>();
 		weapon = GetComponentInChildren<Weapon>();
 	}
 
 	// MOVEMENT //
 
-	PlayerMovement playerMovement;
+	ActorMovement actorMovement;
 
 	public void ReceiveMovement (float horizontal, float vertical)
 	{
 		if (horizontal != 0 || vertical != 0)
 		{
-			playerMovement.ReceiveMovement(horizontal, vertical);
+			actorMovement.ReceiveMovement(horizontal, vertical);
 		}
 	}
 
@@ -40,22 +40,22 @@ public class PlayerController : MonoBehaviour {
 
 	// BLOCK //
 
-	PlayerBlock playerBlock;
+	ActorBlock actorBlock;
 
 	bool blocking;
 
 	public void ReceiveBlock (bool blockButton)
 	{
 		blocking = blockButton;
-		playerBlock.ReceiveBlock(blockButton);
+		actorBlock.ReceiveBlock(blockButton);
 	}
 
 	// CROUCH //
 
-	PlayerCrouch playerCrouch;
+	ActorCrouch actorCrouch;
 
 	public void ReceiveCrouch (bool crouchButton)
 	{
-		playerCrouch.ReceiveCrouch(crouchButton);
+		actorCrouch.ReceiveCrouch(crouchButton);
 	}
 }

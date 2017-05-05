@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBlock : MonoBehaviour {
+public class ActorBlock : MonoBehaviour {
 
 	// SYSTEM //
 
