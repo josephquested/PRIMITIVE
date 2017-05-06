@@ -10,7 +10,7 @@ public class ActorController : MonoBehaviour {
 	{
 		actorMovement = GetComponent<ActorMovement>();
 		actorCrouch = GetComponent<ActorCrouch>();
-		actorBlock = GetComponent<ActorBlock>();
+		actorSpecial = GetComponent<ActorSpecial>();
 		weapon = GetComponentInChildren<Weapon>();
 	}
 
@@ -32,22 +32,22 @@ public class ActorController : MonoBehaviour {
 
 	public void ReceiveFire (bool fireDown)
 	{
-		if (fireDown && !blocking)
+		if (fireDown && !specialButton)
 		{
 			weapon.FireDown();
 		}
 	}
 
-	// BLOCK //
+	// SPECIAL //
 
-	ActorBlock actorBlock;
+	ActorSpecial actorSpecial;
 
-	bool blocking;
+	bool specialButton;
 
-	public void ReceiveBlock (bool blockButton)
+	public void ReceiveSpecial (bool _specialButton)
 	{
-		blocking = blockButton;
-		actorBlock.ReceiveBlock(blockButton);
+		specialButton = _specialButton;
+		actorSpecial.ReceiveSpecial(specialButton);
 	}
 
 	// CROUCH //

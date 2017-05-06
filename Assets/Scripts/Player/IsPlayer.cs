@@ -12,9 +12,4 @@ public class IsPlayer : MonoBehaviour {
 		PlayerInput playerInput = gameObject.AddComponent<PlayerInput>() as PlayerInput;
 		RotateToCursor rotateToCursor = gameObject.AddComponent<RotateToCursor>() as RotateToCursor;
 	}
-
-	void Update ()
-	{
-
-	}
 }

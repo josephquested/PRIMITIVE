@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActorBlock : MonoBehaviour {
+public class ActorSpecial : MonoBehaviour {
 
 	// SYSTEM //
 
@@ -15,8 +15,8 @@ public class ActorBlock : MonoBehaviour {
 
 	// BLOCK //
 
-	public void ReceiveBlock (bool blockButton)
+	public void ReceiveSpecial (bool specialButton)
 	{
-		anim.SetBool("Block", blockButton);
+		anim.SetBool("Special", specialButton);
 	}
 }
