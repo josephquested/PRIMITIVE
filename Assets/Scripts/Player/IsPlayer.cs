@@ -9,7 +9,7 @@ public class IsPlayer : MonoBehaviour {
 	void Start ()
 	{
 		GetComponentInChildren<AudioListener>().enabled = true;
-		PlayerInput playerInput = gameObject.AddComponent<PlayerInput>() as PlayerInput;
-		RotateToCursor rotateToCursor = gameObject.AddComponent<RotateToCursor>() as RotateToCursor;
+		PlayerInput playerInput = gameObject.AddComponent(typeof(PlayerInput)) as PlayerInput;
+		RotateToCursor rotateToCursor = gameObject.AddComponent(typeof(RotateToCursor)) as RotateToCursor;
 	}
 }

@@ -19,13 +19,21 @@ public class GhoulAttack : Weapon {
 	// FIRE //
 
 	public Animator anim;
+	public Rigidbody rb;
 
 	public float attackSpeed;
+	public float thrustForce;
 
 	void FireAttack ()
 	{
 		GameObject attackObj = Instantiate(attackPrefab, attackSpawn.position, attackSpawn.rotation);
 		attackObj.GetComponent<Rigidbody>().AddForce(transform.forward * attackSpeed, ForceMode.Impulse);
 		anim.SetTrigger("Attack");
+		Thrust();
+	}
+
+	void Thrust ()
+	{
+		rb.AddForce(transform.forward * thrustForce, ForceMode.Impulse);
 	}
 }

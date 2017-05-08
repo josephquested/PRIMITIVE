@@ -12,6 +12,15 @@ public class Hit : MonoBehaviour {
 
 	public int damage;
 
+	// KNOCKBACK //
+
+	public float knockback;
+
+	void Knockback (Collider collider)
+	{
+		collider.GetComponent<Rigidbody>().AddForce(transform.forward * knockback, ForceMode.Impulse); 
+	}
+
 	// COLLISION //
 
 	public bool destroyOnCollision;
@@ -21,6 +30,7 @@ public class Hit : MonoBehaviour {
 		if (collider.GetComponent<Hittable>() != null)
 		{
 			HitCollider(collider);
+			Knockback(collider);
 		}
 	}
 
