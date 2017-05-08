@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserEye : Weapon {
+public class RobitAttack : Weapon {
 
 	// SYSTEM //
 
@@ -18,11 +18,14 @@ public class LaserEye : Weapon {
 
 	// FIRE //
 
+	public Animator anim;
+
 	public float laserSpeed;
 
 	void FireLaser ()
 	{
 		GameObject laserObj = Instantiate(laserPrefab, laserSpawn.position, laserSpawn.rotation);
 		laserObj.GetComponent<Rigidbody>().AddForce(transform.forward * laserSpeed, ForceMode.Impulse);
+		anim.SetTrigger("Attack");
 	}
 }
