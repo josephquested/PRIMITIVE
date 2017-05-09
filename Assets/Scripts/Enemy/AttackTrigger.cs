@@ -6,13 +6,23 @@ public class AttackTrigger : MonoBehaviour {
 
 	// SYSTEM //
 
-	void Start ()
+	// TRIGGER //
+
+	public bool playerInTrigger;
+
+	void OnTriggerEnter (Collider collider)
 	{
-		
+		if (collider.tag == "Player")
+		{
+			playerInTrigger = true;
+		}
 	}
 
-	void Update ()
+	void OnTriggerExit (Collider collider)
 	{
-		
+		if (collider.tag == "Player")
+		{
+			playerInTrigger = false;
+		}
 	}
 }
